@@ -46,7 +46,7 @@ Ultrasonic sensor (HC-SR04):
 - GPIO 24 (Pin 18) through 330 ohm. (connect this to GND through a 470 ohm aswell)
 - GND (Pin 6)
 - For more information to connect this you can read [this](https://tutorials-raspberrypi.com/wp-content/uploads/2014/05/ultraschall_Steckplatine-768x952.png)
-- Datasheet](https://www.mouser.com/ds/2/813/HCSR04-1022824.pdf)
+- [Datasheet](https://www.mouser.com/ds/2/813/HCSR04-1022824.pdf)
 
 #### How to run the image: 
 - docker pull raniot/nodes:latest
