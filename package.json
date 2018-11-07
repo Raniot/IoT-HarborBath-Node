@@ -1,0 +1,42 @@
+{
+  "name": "wot-pi",
+  "version": "1.0.0",
+  "description": "A Web of Things sensor node for the Pi",
+  "main": "wot-pi.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node wot-server.js"
+  },
+  "author": "Vlad Trifa",
+  "license": "Apache-2.0",
+  "keywords": [
+    "web of things",
+    "building the web of things",
+    "wot",
+    "REST",
+    "HTTP",
+    "mqtt",
+    "pi",
+    "coap",
+    "m2m",
+    "iot",
+    "tcp",
+    "internet of things",
+    "messaging"
+  ],
+  "dependencies": {
+    "bl": "^2.0.1",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "msgpack5": "^4.2.0",
+    "node-json2html": "*",
+    "ws": "^6.0.0",
+    "object-observer": "^1.0.3",
+    "mqtt": "^1.5.0"
+  },
+  "optionalDependencies": {
+    "onoff": "*",
+    "node-dht-sensor": "*"
+  }
+}
