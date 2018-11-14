@@ -1,11 +1,11 @@
 {
   "name": "wot-pi",
   "version": "1.0.0",
-  "description": "A Web of Things sensor node for the Pi",
+  "description": "A IOT harbor bath sensor node for the Pi",
   "main": "wot-pi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node wot-server.js"
+    "start": "node SensorNode.js"
   },
   "author": "Vlad Trifa",
   "license": "Apache-2.0",
