@@ -35,7 +35,7 @@
         "description": "Counting change in humans",
         "value": 0,
         "gpio": 1
-    },
+    }},
     "actuators": {
       "leds": {
         "1": {

@@ -9,7 +9,7 @@ var ledsPlugin = require('./plugins/internal/ledsPlugin'),
 
 // Internal Plugins for sensors/actuators connected to the PI GPIOs
 // If you test this with real sensors do not forget to set simulate to 'false'
-var simulate = process.env.SIMULATE == "false" ? false : true;
+var simulate = false//process.env.SIMULATE == "false" ? false : true;
 // ToDo COMMENT IN!!!!!!!!!!
 console.log('Simulation set to: ' + simulate);
 
@@ -29,8 +29,10 @@ var gateCloseMessage = "Close"
 var gateOpenMessage = "Open"
 
 client.on('connect', function () {
+  console.log('connected to MQTT')
   client.subscribe('Node/gate')
-  sensorsetInterval(function() {
+  setInterval(function() {
+    console.log("Prepare message")
     message = '{"Sensors": ['
     resources.observe(changes => {
       changes.forEach(change => {
@@ -53,22 +55,23 @@ client.on('connect', function () {
              message += ','; 
              firstReading = false;
           }
-          message += ' { "Type": "Human counter", "Value": -3, "Unit": "Humans" }'
+          message += ' { "Type": "Lux", "Value": -3, "Unit": "Humans" }'
         }
-        else if(checkModel(CounterModel,change)){
+        /* else if(checkModel(CounterModel,change)){
           if(!firstReading) {
              message += ','; 
              firstReading = false;
           }
           message += ' { "Type": "Human counter", "Value": -3, "Unit": "Humans" }'
-        }
+        } */
       });
     });
-    message += ']"}' 
+    message += ']}' 
     client.publish('Gateway/message', message); 
-    firstReading = True;
+    firstReading = true;
+    console.log('Message:' + message)
     console.log('Message Sent');
-  }, 60000);
+  }, 6000);
 });
 
 function checkModel(model, change){
