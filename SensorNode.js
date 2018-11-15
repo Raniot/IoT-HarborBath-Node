@@ -18,11 +18,7 @@ ledsPlugin.start({'simulate': simulate, 'frequency': 10000});
 dhtPlugin.start({'simulate': simulate, 'frequency': 10000});
 
 
-var tempModel = resources.pi.sensors.temperature;
-var humiModel = resources.pi.sensors.humidity;
-var luxModel = resources.pi.sensors.lux;
-var counterModel = resources.pi.sensors.counter;
-var firstReading = true
+var timeInterval = 6000 // in ms 900000 = 15 min
 var gateCloseMessage = "Close"
 var gateOpenMessage = "Open"
 
@@ -32,49 +28,14 @@ client.on('connect', function () {
   setInterval(function() {
     console.log("Prepare message")
     message = '{"Sensors": ['
-    resources.observe(changes => {
-      console.log('changes: ' + changes)
-      changes.forEach(change => {
-        console.log('change: '+ change + ' and Value: ' + change.value)
-        if(checkModel(tempModel,change)){
-          if(!firstReading) {
-             message += ','; 
-             firstReading = false;
-          }
-          console.log('adding temperature to message:' + change.value)
-          message += ' { "Type": "Temperature", "Value": '+ change.value +', "Unit": "degrees celcius" }';
-        }
-        else if(checkModel(humiModel,change)){
-          if(!firstReading) {
-             message += ','; 
-             firstReading = false;
-          }
-          console.log('adding humidity to message:' + change.value)
-          message += ' { "Type": "Humidity", "Value": '+ change.value +', "Unit": "percentage" }';
-        }
-        else if(checkModel(luxModel,change)){
-          if(!firstReading) {
-             message += ','; 
-             firstReading = false;
-          }
-          console.log('adding lux to message:' + change.value)
-          message += ' { "Type": "Lux", "Value": '+ change.value +', "Unit": "Humans" }'
-        }
-        /* else if(checkModel(CounterModel,change)){
-          if(!firstReading) {
-             message += ','; 
-             firstReading = false;
-          }
-          message += ' { "Type": "Human counter", "Value": -3, "Unit": "Humans" }'
-        } */
-      });
-    });
+    message += ' { "Type": "Temperature", "Value": '+ dhtPlugin.getTemperature() +', "Unit": "degrees celcius" },';
+    message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" },';
+    //message += ' { "Type": "Lux", "Value": 0, "Unit": "???" }'
     message += ']}' 
     client.publish('Gateway/message', message); 
-    firstReading = true;
     console.log('Message:' + message)
     console.log('Message Sent');
-  }, 6000); //15 min= 900000
+  }, timeInterval);
 });
 
 function checkModel(model, change){
