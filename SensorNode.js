@@ -33,27 +33,32 @@ client.on('connect', function () {
     console.log("Prepare message")
     message = '{"Sensors": ['
     resources.observe(changes => {
+      console.log('changes: ' + changes)
       changes.forEach(change => {
+        console.log('change: '+ change + ' and Value: ' + change.value)
         if(checkModel(tempModel,change)){
           if(!firstReading) {
              message += ','; 
              firstReading = false;
           }
-          message += ' { "Type": "Temperature", "Value": '+ change +', "Unit": "degrees celcius" }';
+          console.log('adding temperature to message:' + change.value)
+          message += ' { "Type": "Temperature", "Value": '+ change.value +', "Unit": "degrees celcius" }';
         }
         else if(checkModel(humiModel,change)){
           if(!firstReading) {
              message += ','; 
              firstReading = false;
           }
-          message += ' { "Type": "Humidity", "Value": '+ change +', "Unit": "percentage" }';
+          console.log('adding humidity to message:' + change.value)
+          message += ' { "Type": "Humidity", "Value": '+ change.value +', "Unit": "percentage" }';
         }
         else if(checkModel(luxModel,change)){
           if(!firstReading) {
              message += ','; 
              firstReading = false;
           }
-          message += ' { "Type": "Lux", "Value": '+ change +', "Unit": "Humans" }'
+          console.log('adding lux to message:' + change.value)
+          message += ' { "Type": "Lux", "Value": '+ change.value +', "Unit": "Humans" }'
         }
         /* else if(checkModel(CounterModel,change)){
           if(!firstReading) {
