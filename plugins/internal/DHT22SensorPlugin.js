@@ -22,6 +22,14 @@ exports.stop = function () {
   console.info('%s plugin stopped!', pluginName);
 };
 
+exports.getTemperature = function () {
+  return model.temperature.value;
+}
+
+exports.getHumidity = function () {
+  return model.humidity.value;
+}
+
 function connectHardware() {
  var sensorDriver = require('node-dht-sensor');
   var sensor = {

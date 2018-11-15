@@ -22,8 +22,6 @@ var tempModel = resources.pi.sensors.temperature;
 var humiModel = resources.pi.sensors.humidity;
 var luxModel = resources.pi.sensors.lux;
 var counterModel = resources.pi.sensors.counter;
-var led1Model = resources.pi.actuators.leds['1'];
-var led2Model = resources.pi.actuators.leds['2'];
 var firstReading = true
 var gateCloseMessage = "Close"
 var gateOpenMessage = "Open"
@@ -55,7 +53,7 @@ client.on('connect', function () {
              message += ','; 
              firstReading = false;
           }
-          message += ' { "Type": "Lux", "Value": -3, "Unit": "Humans" }'
+          message += ' { "Type": "Lux", "Value": '+ change +', "Unit": "Humans" }'
         }
         /* else if(checkModel(CounterModel,change)){
           if(!firstReading) {
@@ -71,7 +69,7 @@ client.on('connect', function () {
     firstReading = true;
     console.log('Message:' + message)
     console.log('Message Sent');
-  }, 900000); //15 min
+  }, 6000); //15 min= 900000
 });
 
 function checkModel(model, change){
