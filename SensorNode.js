@@ -18,7 +18,7 @@ ledsPlugin.start({'simulate': simulate, 'frequency': 10000});
 dhtPlugin.start({'simulate': simulate, 'frequency': 10000});
 
 
-var timeInterval = 6000 // in ms 900000 = 15 min
+var timeInterval = 60000*5 // in ms 900000 = 15 min
 var gateCloseMessage = "Close"
 var gateOpenMessage = "Open"
 
