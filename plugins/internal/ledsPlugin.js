@@ -37,6 +37,16 @@ exports.stop = function () {
   console.info('%s plugin stopped!', pluginName);
 };
 
+exports.CloseGateLight = function () {
+  switchOnOff(false)
+  switchOnOff2(true)
+}
+
+exports.OpenGateLight = function () {
+  switchOnOff(true)
+  switchOnOff2(false)
+}
+
 
 function switchOnOff(value) {
   if (!localParams.simulate) {

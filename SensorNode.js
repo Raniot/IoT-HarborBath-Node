@@ -71,7 +71,7 @@ client.on('connect', function () {
     firstReading = true;
     console.log('Message:' + message)
     console.log('Message Sent');
-  }, 6000);
+  }, 900000); //15 min
 });
 
 function checkModel(model, change){
@@ -84,10 +84,12 @@ client.on('message', function (topic, message) {
     if(message == gateCloseMessage){
       //Turn off green LED 
       //Turn on red LED
+      ledsPlugin.CloseGateLight()
     } 
     else if(message == gateOpenMessage){
       //Turn On green LED 
       //Turn off red LED
+      ledsPlugin.OpenGateLight()
     }
   }
 })
