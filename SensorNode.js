@@ -29,7 +29,7 @@ client.on('connect', function () {
     console.log("Prepare message")
     message = '{"Sensors": ['
     message += ' { "Type": "Temperature", "Value": '+ dhtPlugin.getTemperature() +', "Unit": "degrees celcius" },';
-    message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" },';
+    message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" }';
     //message += ' { "Type": "Lux", "Value": 0, "Unit": "???" }'
     message += ']}' 
     client.publish('Gateway/message', message); 
