@@ -18,30 +18,26 @@ ledsPlugin.start({'simulate': simulate, 'frequency': 10000});
 dhtPlugin.start({'simulate': simulate, 'frequency': 10000});
 
 
-var timeInterval = 60000*5 // in ms 900000 = 15 min
+var timeInterval = 60000 // in ms = 1 min
 var gateCloseMessage = "Close"
 var gateOpenMessage = "Open"
 
 client.on('connect', function () {
   console.log('connected to MQTT')
   client.subscribe('Node/gate')
+
   setInterval(function() {
     console.log("Prepare message")
     message = '{"Sensors": ['
     message += ' { "Type": "Temperature", "Value": '+ dhtPlugin.getTemperature() +', "Unit": "degrees celcius" },';
-    message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" }';
-    //message += ' { "Type": "Lux", "Value": 0, "Unit": "???" }'
+    message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" },';
+    message += ' { "Type": "Lux", "Value": 0, "Unit": "lumen" }'
     message += ']}' 
     client.publish('Gateway/message', message); 
     console.log('Message:' + message)
     console.log('Message Sent');
   }, timeInterval);
 });
-
-function checkModel(model, change){
-  if (change.type === 'update' && model === change.path.slice(0, -1).reduce((obj, i) => obj[i], resources)) {return true;}
-  return false;
-}
 
 client.on('message', function (topic, message) {
   if(topic == "Node/gate") {
