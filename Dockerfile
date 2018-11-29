@@ -15,7 +15,7 @@ COPY package*.json ./
 
 
 RUN npm install
-RUN npm install node-dht-sensor
+# RUN npm install node-dht-sensor
 # Bundle app source
 COPY . .
 
