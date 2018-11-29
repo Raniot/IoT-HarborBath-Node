@@ -48,7 +48,7 @@ pythonProcessBack.stdout.on('data', function(data) {
   pirPersonValue = pirPlugin.getValue()
   ultraPersonValue = ultraPerson
   console.log("Ultra len: " +test)
-  if(ultraPersonValue && pirPersonValue)
+  if(ultraPersonValue || pirPersonValue)
   {
     message = '{"Sensors": [ { "Type": "Human counter", "Value": '+ integer +', "Unit": "humans" } ] }';
 
