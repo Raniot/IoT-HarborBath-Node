@@ -45,3 +45,8 @@ function simulate() {
 function showValue() {
   console.info(model.value ? 'there is someone!' : 'not anymore!');
 };
+
+exports.getValue = function () {
+  if(model.value) return true
+  return false
+};

@@ -22,6 +22,37 @@ var timeInterval = 60000 // in ms = 1 min
 var gateCloseMessage = "Close"
 var gateOpenMessage = "Open"
 
+const spawn = require("child_process").spawn;
+const pythonProcessBack = spawn('python3',["BackgroundSubtraction.py"]);
+const pythonProcessUltra = spawn('python3',["../UltrasoundDistance.py"]);
+var ultraLen = 150
+ultraPerson = false
+pythonProcessUltra.stdout.on('data', (data) => {
+  if(data < ultraLen)
+    ultraPerson = true;
+  else
+    ultraPerson = false;
+});
+
+pythonProcessBack.stdout.on('data', function(data) {
+  console.log(data.toString());
+  var integer = parseInt(data);
+  pirPersonValue = pirPlugin.getValue()
+  ultraPersonValue = ultraPerson
+  if(ultraPersonValue && pirPersonValue)
+  {
+    message = '{"Sensors": [ { "Type": "Human counter", "Value": '+ integer +', "Unit": "humans" } ] }';
+
+    //COMMENT IN TO SEND TO MQTT
+    client.publish('Gateway/message', message); 
+    console.log('Message Sent');
+  }
+  else{
+    console.log('Camera registered' + integer + ', but Pir value was' + pirPersonValue + " and Ultra value was " + ultraPersonValue);
+  }
+});
+
+
 client.on('connect', function () {
   console.log('connected to MQTT')
   client.subscribe('Node/gate')
