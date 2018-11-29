@@ -27,15 +27,15 @@ const spawn2 = require("child_process").spawn;
 
 const pythonProcessBack = spawn('python3',["BackgroundSubtraction.py"]);
 const pythonProcessUltra = spawn2('python3',["UltrasoundDistance.py"]);
-var ultraLen = 150
-ultraPerson = false
+var ultraLen = 120;
+ultraPerson = false;
 pythonProcessUltra.stdout.on('data', function(data) {
   if(data < ultraLen){
-    console.log("Set to True")
+    // console.log("Set to True")
     ultraPerson = true;
   }
   else{
-    console.log("Set to False")
+    // console.log("Set to False")
     ultraPerson = false;
   }
 });
