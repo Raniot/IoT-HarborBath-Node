@@ -2,6 +2,7 @@ FROM raniot/rpiopencv:latest
 # Install some extra packages to make sure we can build and "npm install" our dependencies later
 RUN apt-get install npm
 RUN apt-get install nodejs
+RUN npm cache clean -f && npm install -g n && n stable
 
 
 # Create app directory
