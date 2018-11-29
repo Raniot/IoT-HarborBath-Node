@@ -13,7 +13,7 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install node-dht-sensor
+# RUN npm install node-dht-sensor
 RUN npm install
 # Bundle app source
 COPY . .
