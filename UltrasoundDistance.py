@@ -44,11 +44,9 @@ def distance():
  
 if __name__ == '__main__':
     try:
-        while(True):
-            dist = distance()
-            print ("%.1f" % dist)
-            sys.stdout.flush()
-            time.sleep(0.050)
+        dist = distance()
+        print ("%.1f" % dist)
+        sys.stdout.flush()
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:

@@ -26,23 +26,26 @@ const spawn = require("child_process").spawn;
 const spawn2 = require("child_process").spawn;
 
 const pythonProcessBack = spawn('python3',["BackgroundSubtraction.py"]);
-const pythonProcessUltra = spawn2('python3',["UltrasoundDistance.py"]);
 var ultraLen = 120;
 var test = 0;
 ultraPerson = false;
-pythonProcessUltra.stdout.on('data', function(data) {
-  test = data
-  if(data < ultraLen){
-    // console.log("Set to True")
-    ultraPerson = true;
-  }
-  else{
-    // console.log("Set to False")
-    ultraPerson = false;
-  }
-});
+
 
 pythonProcessBack.stdout.on('data', function(data) {
+
+  const pythonProcessUltra = spawn2('python3',["UltrasoundDistance.py"]);
+  pythonProcessUltra.stdout.on('data', function(data) {
+    test = data
+    if(data < ultraLen){
+      // console.log("Set to True")
+      ultraPerson = true;
+    }
+    else{
+      // console.log("Set to False")
+      ultraPerson = false;
+    }
+  });
+
   console.log(data.toString());
   var integer = parseInt(data);
   pirPersonValue = pirPlugin.getValue()
