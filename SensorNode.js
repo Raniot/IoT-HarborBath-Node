@@ -33,7 +33,7 @@ ultraPerson = false;
 pythonProcessUltra.stdout.on('data', function(data) {
   test = data
   if(data < ultraLen){
-    console.log("Set to True")
+    console.log("Set to True" + data)
     ultraPerson = true;
   }
   else{
