@@ -48,7 +48,7 @@ if __name__ == '__main__':
             dist = distance()
             print ("%.1f" % dist)
             sys.stdout.flush()
-            time.sleep(0.020)
+            time.sleep(0.050)
  
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
