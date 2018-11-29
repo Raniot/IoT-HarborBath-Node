@@ -63,17 +63,17 @@ client.on('connect', function () {
   console.log('connected to MQTT')
   client.subscribe('Node/gate')
 
-  setInterval(function() {
-    console.log("Prepare message")
-    message = '{"Sensors": ['
-    // message += ' { "Type": "Temperature", "Value": '+ dhtPlugin.getTemperature() +', "Unit": "degrees celcius" },';
-    // message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" },';
-    message += ' { "Type": "Lux", "Value": 0, "Unit": "lumen" }'
-    message += ']}' 
-    client.publish('Gateway/message', message); 
-    console.log('Message:' + message)
-    console.log('Message Sent');
-  }, timeInterval);
+  // setInterval(function() {
+  //   console.log("Prepare message")
+  //   // message = '{"Sensors": ['
+  //   // // message += ' { "Type": "Temperature", "Value": '+ dhtPlugin.getTemperature() +', "Unit": "degrees celcius" },';
+  //   // // message += ' { "Type": "Humidity", "Value": '+ dhtPlugin.getHumidity() +', "Unit": "percentage" },';
+  //   // message += ' { "Type": "Lux", "Value": 0, "Unit": "lumen" }'
+  //   // message += ']}' 
+  //   // client.publish('Gateway/message', message); 
+  //   // console.log('Message:' + message)
+  //   // console.log('Message Sent');
+  // }, timeInterval);
 });
 
 client.on('message', function (topic, message) {
