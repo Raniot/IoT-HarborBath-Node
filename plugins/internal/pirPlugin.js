@@ -29,7 +29,7 @@ function connectHardware() {
   sensor.watch((err, value) => {
     if (err) exit(err);
     model.value = !!value;
-    showValue();
+    // showValue();
   })
   console.info('Hardware %s sensor started!', pluginName);
 };
