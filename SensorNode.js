@@ -4,7 +4,7 @@ var resources = require('./resources/model');
 
 // Internal Plugins
 var ledsPlugin = require('./plugins/internal/ledsPlugin'),
-  pirPlugin = require('./plugins/internal/pirPlugin'),
+  pirPlugin = require('./plugins/internal/pirPlugin')//,
   // dhtPlugin = require('./plugins/internal/DHT22SensorPlugin');
 
 // Internal Plugins for sensors/actuators connected to the PI GPIOs
