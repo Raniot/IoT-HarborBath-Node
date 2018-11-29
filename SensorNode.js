@@ -27,12 +27,16 @@ const spawn2 = require("child_process").spawn;
 
 const pythonProcessBack = spawn('python3',["BackgroundSubtraction.py"]);
 const pythonProcessUltra = spawn2('python3',["UltrasoundDistance.py"]);
-var ultraLen = 200;
+var ultraLenThresh = 150;
 var test = 0;
-ultraPerson = false;
+var ultraData = []
 pythonProcessUltra.stdout.on('data', function(data) {
+  ultraData.push(data)
+  if(ultraData.length > 5)
+    ultraData.shift()
+
   test = data
-  if(data < ultraLen){
+  if(data < ultraLenThresh){
     console.log("Set to True" + data)
     ultraPerson = true;
   }
@@ -46,7 +50,12 @@ pythonProcessBack.stdout.on('data', function(data) {
   console.log(data.toString());
   var integer = parseInt(data);
   pirPersonValue = pirPlugin.getValue()
-  ultraPersonValue = ultraPerson
+
+  var minUltraData = Math.min.apply(null, ultraData)
+  ultraPersonValue = false
+  if(minUltraData < ultraLenThresh)
+    ultraPersonValue = true
+
   console.log("Ultra len: " +test)
   if(ultraPersonValue || pirPersonValue)
   {
