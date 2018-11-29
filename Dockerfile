@@ -1,6 +1,8 @@
 FROM raniot/rpiopencv:latest
 # Install some extra packages to make sure we can build and "npm install" our dependencies later
 RUN apt-get install npm
+RUN apt-get install nodejs
+
 
 # Create app directory
 WORKDIR /usr/src/app
