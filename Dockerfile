@@ -3,6 +3,7 @@ FROM raniot/rpiopencv:latest
 RUN apt-get install npm
 RUN apt-get install nodejs
 RUN npm cache clean -f && npm install -g n && n stable
+RUN pip3 install RPi.GPIO
 
 
 # Create app directory
