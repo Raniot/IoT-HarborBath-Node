@@ -24,7 +24,7 @@ var gateOpenMessage = "Open"
 
 const spawn = require("child_process").spawn;
 const pythonProcessBack = spawn('python3',["BackgroundSubtraction.py"]);
-const pythonProcessUltra = spawn('python3',["../UltrasoundDistance.py"]);
+const pythonProcessUltra = spawn('python3',["UltrasoundDistance.py"]);
 var ultraLen = 150
 ultraPerson = false
 pythonProcessUltra.stdout.on('data', function(data) {
