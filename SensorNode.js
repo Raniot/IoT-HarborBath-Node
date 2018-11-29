@@ -28,10 +28,15 @@ const pythonProcessUltra = spawn('python3',["../UltrasoundDistance.py"]);
 var ultraLen = 150
 ultraPerson = false
 pythonProcessUltra.stdout.on('data', function(data) {
-  if(data < ultraLen)
+  console.log(data)
+  if(data < ultraLen){
+    console.log("Set to True")
     ultraPerson = true;
-  else
+  }
+  else{
+    console.log("Set to False")
     ultraPerson = false;
+  }
 });
 
 pythonProcessBack.stdout.on('data', function(data) {
