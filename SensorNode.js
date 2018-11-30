@@ -37,7 +37,7 @@ pythonProcessUltra.stdout.on('data', function(data) {
 
   test = data
   if(data < ultraLenThresh){
-    console.log("Set to True" + data)
+    // console.log("Set to True" + data)
     ultraPerson = true;
   }
   else{
