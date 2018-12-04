@@ -51,7 +51,7 @@ exports.OpenGateLight = function () {
 function switchOnOff(value) {
   if (!localParams.simulate) {
     actuator.write(value === true ? 1 : 0, function () {
-      console.info('Changed value of %s to %s', pluginName, value);
+      console.info('Changed value of %s to %s', "LED1", value);
     });
   }
 };
@@ -59,7 +59,7 @@ function switchOnOff(value) {
 function switchOnOff2(value) {
   if (!localParams.simulate) {
     actuator2.write(value === true ? 1 : 0, function () {
-      console.info('Changed value of %s to %s', pluginName, value);
+      console.info('Changed value of %s to %s', "LED2", value);
     });
   }
 };

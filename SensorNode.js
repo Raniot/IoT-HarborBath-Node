@@ -56,7 +56,7 @@ pythonProcessBack.stdout.on('data', function(data) {
   if(minUltraData < ultraLenThresh)
     ultraPersonValue = true
 
-  console.log("Ultra len: " +test)
+  // console.log("Ultra len: " +test)
   if(ultraPersonValue || pirPersonValue)
   {
     message = '{"Sensors": [ { "Type": "Human counter", "Value": '+ integer +', "Unit": "humans" } ] }';
